@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import Developer.StudentManagement.DTO.StudentDTO;
 import Developer.StudentManagement.Entity.Student;
 import Developer.StudentManagement.Repository.StudentRepository;
 
@@ -21,6 +22,19 @@ public class StudentServiceImp implements StudentService {
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
         // Implementation for saving a student
+    }
+    @Override
+    public StudentDTO save(StudentDTO studentDTO){
+        Student studentEntity = new Student();
+        studentEntity.setName(studentDTO.getName());
+        studentEntity.setEmail(studentDTO.getEmail());
+        studentEntity.setCourse(studentDTO.getCourse());
+        studentEntity.setPhoneNumber(studentDTO.getPhoneNumber());
+        studentEntity.setAddress(studentDTO.getAddress());
+
+        Student savStudent = this.studentRepository.save(studentEntity);
+        return studentDTO;
+
     }
 
     @Override 

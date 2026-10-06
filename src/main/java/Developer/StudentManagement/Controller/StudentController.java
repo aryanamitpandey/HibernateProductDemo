@@ -2,6 +2,7 @@ package Developer.StudentManagement.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import Developer.StudentManagement.DTO.StudentDTO;
 import Developer.StudentManagement.Entity.Student;
 import Developer.StudentManagement.Service.StudentService;
 
@@ -28,6 +31,11 @@ public class StudentController {
     @PostMapping("/student")
     public Student saveStudent(@RequestBody Student student){
         return studentService.saveStudent(student);
+    }
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public StudentDTO save(@RequestBody StudentDTO studentDTO){
+        return studentService.save(studentDTO);
     }
 
     @GetMapping("/student/{id}")

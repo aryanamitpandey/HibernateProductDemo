@@ -2,11 +2,14 @@ package Developer.StudentManagement.Service;
 
 import java.util.List;
 
+import Developer.StudentManagement.DTO.StudentDTO;
 import Developer.StudentManagement.Entity.Student;
 
 public interface StudentService {
 
     public Student saveStudent(Student student);
+
+    public StudentDTO save(StudentDTO studentDTO);
 
     public Student getStudentById(Integer id);
 
